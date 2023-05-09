@@ -27,6 +27,6 @@ public class GameManager : MonoBehaviour
         StopEnemyChase = null;
     }
 
-    public Action<Transform> StartEnemyChase;
-    public Action StopEnemyChase;
+    public static Action<Transform> StartEnemyChase;
+    public static Action StopEnemyChase;
 }
