@@ -8,8 +8,6 @@ public class PlayerMovement : MonoBehaviour
     public KeyCode[] Controls;
     private Vector3 movement;
     public Rigidbody2D PlayerRigidbody2D;
-    public int life;
-    private bool _invincible = false;
 
     void Start()
     {
@@ -40,21 +38,4 @@ public class PlayerMovement : MonoBehaviour
         transform.position += movement * Time.deltaTime * movementSpeed;
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.gameObject.CompareTag("Enemy"))
-        {
-            if (!_invincible)
-            {
-                _invincible = true;
-                life--;
-                Invoke("resetInvincibility", 2);
-            }
-        }
-    }
-
-    private void resetInvincibility()
-    {
-        _invincible = false;
-    }
 }

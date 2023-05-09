@@ -4,33 +4,26 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    public Transform Target;
     public float Within_range;
     public float Speed = 4.5f;
-    private bool _isChasing = false;
+    [SerializeField] GameManager gameManager;
 
     void Start()
     {
-        
+        gameManager.StartEnemyChase += StartChase;
+        gameManager.StopEnemyChase += StopChase;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void StartChase(Transform target)
     {
-        float dist = Vector3.Distance(Target.position, transform.position);
-        if (dist <= Within_range)
-        {
-            _isChasing = true;
-        }
-
-        if (_isChasing)
-        {
-            StartChase(); 
-        }
+        Debug.Log(transform.position);
+        transform.position = Vector3.MoveTowards(transform.position, target.transform.position, Speed);
+        Debug.Log(transform.position);
     }
 
-    private void StartChase()
+    private void StopChase()
     {
-        transform.position = Vector3.MoveTowards(transform.position, Target.transform.position, Speed);
+        Debug.Log("stopchase");
+        Speed = 0;
     }
 }

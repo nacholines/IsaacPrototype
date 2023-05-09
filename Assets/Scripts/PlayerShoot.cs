@@ -8,7 +8,8 @@ public class PlayerShoot : MonoBehaviour
     public Transform ShootingStart;
     public KeyCode[] Controls;
     public GameObject BulletPrefab;
-    public float BulletSpeed;
+    private bool _allowFire = true;
+    public float FireRate;
     public enum ShootingDirection
     {
         Up, 
@@ -16,40 +17,44 @@ public class PlayerShoot : MonoBehaviour
         Left, 
         Right
     }
-    
-    void Start()
-    {
-        
-    }
 
     void Update()
     {
-        if (Input.GetKey(Controls[0]))
+        if (_allowFire)
         {
-            PlayerPosition.transform.rotation = Quaternion.Euler(0f, 0f, 90f);
-            StartCoroutine(shoot());
-        }
-        if (Input.GetKey(Controls[1]))
-        {
-            PlayerPosition.transform.rotation = Quaternion.Euler(0f, 0f, 270f);
-            StartCoroutine(shoot());
-        }
-        if (Input.GetKey(Controls[2]))
-        {
-            PlayerPosition.transform.rotation = Quaternion.Euler(0f, 0f, 180f);
-            StartCoroutine(shoot());
-        }
-        if (Input.GetKey(Controls[3]))
-        {
-            PlayerPosition.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-            StartCoroutine(shoot());
+            if (Input.GetKey(Controls[0]))
+            {
+                PlayerPosition.transform.rotation = Quaternion.Euler(0f, 0f, 90f);
+                StartCoroutine(firingRate());
+            }
+            if (Input.GetKey(Controls[1]))
+            {
+                PlayerPosition.transform.rotation = Quaternion.Euler(0f, 0f, 270f);
+                StartCoroutine(firingRate());
+            }
+            if (Input.GetKey(Controls[2]))
+            {
+                PlayerPosition.transform.rotation = Quaternion.Euler(0f, 0f, 180f);
+                StartCoroutine(firingRate());
+            }
+            if (Input.GetKey(Controls[3]))
+            {
+                PlayerPosition.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+                StartCoroutine(firingRate());
+            }
         }
     }
 
-    private IEnumerator shoot()
+    private IEnumerator firingRate()
+    {
+        _allowFire = false;
+        shoot();
+        yield return new WaitForSeconds(FireRate);
+        _allowFire = true;
+    }
+
+    private void shoot()
     {
         GameObject bullet = Instantiate(BulletPrefab, ShootingStart.position, ShootingStart.rotation);
-
-        yield return new WaitForSeconds(0.5f);
     }
 }
