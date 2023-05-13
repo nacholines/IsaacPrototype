@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour, IHealth
 {
-    public Rigidbody2D PlayerRigidbody2D;
     public float Health;
     private bool _invincible = false;
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerShoot : MonoBehaviour
 {
-    public Transform ShootingPosition;
+    public Transform ShootingRotation;
     public Transform ShootingStart;
     public KeyCode[] Controls;
     public GameObject BulletPrefab;
@@ -24,22 +24,22 @@ public class PlayerShoot : MonoBehaviour
         {
             if (Input.GetKey(Controls[0]))
             {
-                ShootingStart.transform.rotation = Quaternion.Euler(0f, 0f, 90f);
+                ShootingRotation.transform.rotation = Quaternion.Euler(0f, 0f, 90f);
                 StartCoroutine(firingRate());
             }
             if (Input.GetKey(Controls[1]))
             {
-                ShootingStart.transform.rotation = Quaternion.Euler(0f, 0f, 270f);
+                ShootingRotation.transform.rotation = Quaternion.Euler(0f, 0f, 270f);
                 StartCoroutine(firingRate());
             }
             if (Input.GetKey(Controls[2]))
             {
-                ShootingStart.transform.rotation = Quaternion.Euler(0f, 0f, 180f);
+                ShootingRotation.transform.rotation = Quaternion.Euler(0f, 0f, 180f);
                 StartCoroutine(firingRate());
             }
             if (Input.GetKey(Controls[3]))
             {
-                ShootingStart.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+                ShootingRotation.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
                 StartCoroutine(firingRate());
             }
         }

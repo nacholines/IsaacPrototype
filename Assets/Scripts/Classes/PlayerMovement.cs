@@ -7,11 +7,11 @@ public class PlayerMovement : MonoBehaviour
     public float movementSpeed = 5f;
     public KeyCode[] Controls;
     private Vector3 movement;
-    public Rigidbody2D PlayerRigidbody2D;
+    public Rigidbody PlayerRigidbody;
 
     void Start()
     {
-        PlayerRigidbody2D = GetComponent<Rigidbody2D>();
+        PlayerRigidbody = GetComponent<Rigidbody>();
     }
 
     void Update()
