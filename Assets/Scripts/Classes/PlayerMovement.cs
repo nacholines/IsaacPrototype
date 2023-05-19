@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour, IFlippable
 {
     public float movementSpeed = 5f;
     public KeyCode[] Controls;
@@ -82,7 +82,7 @@ public class PlayerMovement : MonoBehaviour
         _controller.SendAnimationStatus(_status);
     }
 
-    private void FlipCharacter()
+    public void FlipCharacter()
     {
         Quaternion newRotation = transform.rotation * Quaternion.Euler(0, 180, 0);
         transform.rotation = newRotation;

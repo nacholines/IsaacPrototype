@@ -9,7 +9,6 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("empieza");
         StartEnemyChase?.Invoke(Player);
     }
 
